@@ -2,6 +2,8 @@ import React from "react";
 import styles from './index.module.scss';
 import { useToDoStore} from "../../data/stores/useToDoStore";
 import { InputPlus } from '../components/InputPlus';
+import { InputTask } from '../components/InputTask';
+
 
 
 export const App: React.FC = () => {
@@ -35,7 +37,16 @@ export const App: React.FC = () => {
                 {!tasks.length &&(
                     <p className={styles.articleText}>There is no any tasks</p>
                 )}
-                {}
+                {tasks.map((task) => (
+                    <InputTask 
+                    key ={task.id}
+                    id ={task.id}
+                    title={task.title}
+                    onDone={removeTask}
+                    onEdited={updateTask}
+                    onRemoved={removeTask}
+                    />
+                ))}
             </section>
         </article>
     );
